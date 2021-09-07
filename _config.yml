@@ -5,9 +5,9 @@
 # Site
 title: Hexo
 subtitle: ''
-description: ''
+description: 'Vue'
 keywords:
-author: John Doe
+author: fang bozhou
 language: zh-CN
 timezone: ''
 
@@ -102,4 +102,5 @@ theme: landscape
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ''
+  type: 'git'
+  repo: 'https://github.com/Fbozhou/blog.git'
