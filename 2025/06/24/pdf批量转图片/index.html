@@ -20,17 +20,19 @@
     var CONFIG = {"hostname":"blog.fangbozhou.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="今天遇到一个需求，要求弹窗展示政策pdf内容，为了方便，文件直接放在前端项目中。由于pdf文件体积较大，且仅需展示其内容，故决定将pdf转成图片放在项目中，以缩小文件体积解决方案：使用 ImageMagick + Ghostscript 处理pdf文件以下是封装过的bat脚本 1234567891011121314151617181920212223242526272829303132333435">
+  <meta name="description" content="背景最近在做一个项目，需要在弹窗里展示政策PDF内容。本来想着直接把PDF文件放在前端项目里，但一个文件大几十M，加载起来很慢。而且客户不想看到PDF在网页中的预览框。考虑到只是展示内容，不需要交互功能，就想着把PDF转成图片，这样既能缩小文件体积，又能提升加载速度。 解决方案经过一番搜索，发现 ImageMagick 是个不错的选择。它不仅能处理PDF转图片，还支持批量处理，正好符合我的需求。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="pdf批量转图片">
+<meta property="og:title" content="PDF批量转图片">
 <meta property="og:url" content="https://blog.fangbozhou.com/2025/06/24/pdf%E6%89%B9%E9%87%8F%E8%BD%AC%E5%9B%BE%E7%89%87/index.html">
 <meta property="og:site_name" content="BLOG">
-<meta property="og:description" content="今天遇到一个需求，要求弹窗展示政策pdf内容，为了方便，文件直接放在前端项目中。由于pdf文件体积较大，且仅需展示其内容，故决定将pdf转成图片放在项目中，以缩小文件体积解决方案：使用 ImageMagick + Ghostscript 处理pdf文件以下是封装过的bat脚本 1234567891011121314151617181920212223242526272829303132333435">
+<meta property="og:description" content="背景最近在做一个项目，需要在弹窗里展示政策PDF内容。本来想着直接把PDF文件放在前端项目里，但一个文件大几十M，加载起来很慢。而且客户不想看到PDF在网页中的预览框。考虑到只是展示内容，不需要交互功能，就想着把PDF转成图片，这样既能缩小文件体积，又能提升加载速度。 解决方案经过一番搜索，发现 ImageMagick 是个不错的选择。它不仅能处理PDF转图片，还支持批量处理，正好符合我的需求。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-06-24T06:49:22.000Z">
-<meta property="article:modified_time" content="2025-06-24T09:30:40.235Z">
+<meta property="article:modified_time" content="2025-06-24T10:03:23.961Z">
 <meta property="article:author" content="fang bozhou">
-<meta property="article:tag" content="pdf转图片">
+<meta property="article:tag" content="PDF转图片">
+<meta property="article:tag" content="前端优化">
+<meta property="article:tag" content="实用工具">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://blog.fangbozhou.com/2025/06/24/pdf%E6%89%B9%E9%87%8F%E8%BD%AC%E5%9B%BE%E7%89%87/">
@@ -46,7 +48,7 @@
   };
 </script>
 
-  <title>pdf批量转图片 | BLOG</title>
+  <title>PDF批量转图片 | BLOG</title>
   
 
 
@@ -202,7 +204,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          pdf批量转图片
+          PDF批量转图片
         </h1>
 
         <div class="post-meta">
@@ -213,7 +215,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2025-06-24 14:49:22 / 修改时间：17:30:40" itemprop="dateCreated datePublished" datetime="2025-06-24T14:49:22+08:00">2025-06-24</time>
+              <time title="创建时间：2025-06-24 14:49:22 / 修改时间：18:03:23" itemprop="dateCreated datePublished" datetime="2025-06-24T14:49:22+08:00">2025-06-24</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -221,7 +223,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%9F%A5%E8%AF%86%E8%AE%B0%E5%BD%95/" itemprop="url" rel="index"><span itemprop="name">知识记录</span></a>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">技术笔记</span></a>
                 </span>
             </span>
 
@@ -231,14 +233,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.3k</span>
+              <span>2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -250,8 +252,64 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="今天遇到一个需求，要求弹窗展示政策pdf内容，为了方便，文件直接放在前端项目中。由于pdf文件体积较大，且仅需展示其内容，故决定将pdf转成图片放在项目中，以缩小文件体积"><a href="#今天遇到一个需求，要求弹窗展示政策pdf内容，为了方便，文件直接放在前端项目中。由于pdf文件体积较大，且仅需展示其内容，故决定将pdf转成图片放在项目中，以缩小文件体积" class="headerlink" title="今天遇到一个需求，要求弹窗展示政策pdf内容，为了方便，文件直接放在前端项目中。由于pdf文件体积较大，且仅需展示其内容，故决定将pdf转成图片放在项目中，以缩小文件体积"></a>今天遇到一个需求，要求弹窗展示政策pdf内容，为了方便，文件直接放在前端项目中。由于pdf文件体积较大，且仅需展示其内容，故决定将pdf转成图片放在项目中，以缩小文件体积</h2><h3 id="解决方案：使用-ImageMagick-Ghostscript-处理pdf文件"><a href="#解决方案：使用-ImageMagick-Ghostscript-处理pdf文件" class="headerlink" title="解决方案：使用 ImageMagick + Ghostscript 处理pdf文件"></a>解决方案：使用 <a target="_blank" rel="noopener" href="https://www.imagemagick.org/">ImageMagick</a> + <a target="_blank" rel="noopener" href="https://www.ghostscript.com/">Ghostscript</a> 处理pdf文件</h3><p>以下是封装过的bat脚本</p>
-<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">setlocal</span> enabledelayedexpansion</span><br><span class="line"></span><br><span class="line">:: 设置目标 DPI，调整这里即可改变分辨率</span><br><span class="line"><span class="built_in">set</span> dpi=<span class="number">150</span></span><br><span class="line"></span><br><span class="line">:: 设置输出图片的质量（范围：<span class="number">1</span>-<span class="number">100</span>）</span><br><span class="line"><span class="built_in">set</span> quality=<span class="number">80</span></span><br><span class="line"></span><br><span class="line">:: 定义 A4 的实际尺寸（单位：英寸）</span><br><span class="line"><span class="built_in">set</span> a4_width_inch=<span class="number">8</span>.<span class="number">27</span></span><br><span class="line"><span class="built_in">set</span> a4_height_inch=<span class="number">11</span>.<span class="number">69</span></span><br><span class="line"></span><br><span class="line">:: 使用 PowerShell 动态计算 A4 分辨率（宽度和高度）</span><br><span class="line"><span class="keyword">for</span> /f &quot;tokens=*&quot; <span class="variable">%%A</span> <span class="keyword">in</span> (&#x27;powershell -Command &quot;[math]::Round(<span class="variable">%a4_width_inch%</span> * <span class="variable">%dpi%</span>)&quot;&#x27;) <span class="keyword">do</span> <span class="built_in">set</span> width=<span class="variable">%%A</span></span><br><span class="line"><span class="keyword">for</span> /f &quot;tokens=*&quot; <span class="variable">%%A</span> <span class="keyword">in</span> (&#x27;powershell -Command &quot;[math]::Round(<span class="variable">%a4_height_inch%</span> * <span class="variable">%dpi%</span>)&quot;&#x27;) <span class="keyword">do</span> <span class="built_in">set</span> height=<span class="variable">%%A</span></span><br><span class="line"></span><br><span class="line">:: 输出宽高以及质量参数以供验证</span><br><span class="line"><span class="built_in">echo</span> DPI: <span class="variable">%dpi%</span></span><br><span class="line"><span class="built_in">echo</span> Width: <span class="variable">%width%</span> pixels</span><br><span class="line"><span class="built_in">echo</span> Height: <span class="variable">%height%</span> pixels</span><br><span class="line"><span class="built_in">echo</span> Quality: <span class="variable">%quality%</span>%</span><br><span class="line"></span><br><span class="line">:: 验证宽高是否正确</span><br><span class="line"><span class="keyword">if</span> &quot;<span class="variable">%width%</span>&quot;==&quot;&quot; (</span><br><span class="line">    <span class="built_in">echo</span> 宽度计算失败，请检查 PowerShell 是否可用或计算逻辑是否正确。</span><br><span class="line">    <span class="built_in">pause</span></span><br><span class="line">    <span class="keyword">exit</span> /b</span><br><span class="line">)</span><br><span class="line"><span class="keyword">if</span> &quot;<span class="variable">%height%</span>&quot;==&quot;&quot; (</span><br><span class="line">    <span class="built_in">echo</span> 高度计算失败，请检查 PowerShell 是否可用或计算逻辑是否正确。</span><br><span class="line">    <span class="built_in">pause</span></span><br><span class="line">    <span class="keyword">exit</span> /b</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">:: 遍历当前目录中的所有 PDF 文件</span><br><span class="line"><span class="keyword">for</span> <span class="variable">%%f</span> <span class="keyword">in</span> (*.pdf) <span class="keyword">do</span> (</span><br><span class="line">    :: 获取文件名（不带扩展名）</span><br><span class="line">    <span class="built_in">set</span> filename=<span class="variable">%%~</span>nf</span><br><span class="line">    :: 创建与 PDF 同名的输出目录</span><br><span class="line">    <span class="built_in">mkdir</span> &quot;<span class="variable">!filename!</span>&quot;</span><br><span class="line">    :: 转换 PDF 为图片，确保背景为白色，大小统一，设置质量</span><br><span class="line">    magick -density <span class="variable">%dpi%</span> &quot;<span class="variable">%%f</span>&quot; -background white -alpha remove -alpha off -resize <span class="variable">%width%</span>x<span class="variable">%height%</span> -gravity center -extent <span class="variable">%width%</span>x<span class="variable">%height%</span> -quality <span class="variable">%quality%</span> &quot;<span class="variable">!filename!</span>\page-<span class="variable">%%d</span>.webp&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="built_in">pause</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近在做一个项目，需要在弹窗里展示政策PDF内容。本来想着直接把PDF文件放在前端项目里，但一个文件大几十M，加载起来很慢。而且客户不想看到PDF在网页中的预览框。<br>考虑到只是展示内容，不需要交互功能，就想着把PDF转成图片，这样既能缩小文件体积，又能提升加载速度。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>经过一番搜索，发现 <strong>ImageMagick</strong> 是个不错的选择。它不仅能处理PDF转图片，还支持批量处理，正好符合我的需求。</p>
+<h3 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h3><ol>
+<li><p><strong>安装 <a target="_blank" rel="noopener" href="https://www.imagemagick.org/">ImageMagick</a></strong></p>
+<ul>
+<li>Windows: 下载安装包或使用 <code>choco install imagemagick</code></li>
+<li>安装后记得重启命令行</li>
+</ul>
+</li>
+<li><p><strong>验证安装</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">magick --version</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>安装ImageMagick底层依赖 <a target="_blank" rel="noopener" href="https://www.ghostscript.com/">Ghostscript</a></strong></p>
+<ul>
+<li>下载适合系统版本的安装包（通常是 <code>gswin64.exe</code>）</li>
+</ul>
+</li>
+<li><p><strong>验证安装</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gswin64c -version</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="批量转换脚本"><a href="#批量转换脚本" class="headerlink" title="批量转换脚本"></a>批量转换脚本</h2><p>为了方便使用，我写了个批处理脚本，支持批量转换PDF文件：</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">setlocal</span> enabledelayedexpansion</span><br><span class="line"></span><br><span class="line">:: 设置目标 DPI，调整这里即可改变分辨率</span><br><span class="line"><span class="built_in">set</span> dpi=<span class="number">150</span></span><br><span class="line"></span><br><span class="line">:: 设置输出图片的质量（范围：<span class="number">1</span>-<span class="number">100</span>）</span><br><span class="line"><span class="built_in">set</span> quality=<span class="number">80</span></span><br><span class="line"></span><br><span class="line">:: 定义 A4 的实际尺寸（单位：英寸）</span><br><span class="line"><span class="built_in">set</span> a4_width_inch=<span class="number">8</span>.<span class="number">27</span></span><br><span class="line"><span class="built_in">set</span> a4_height_inch=<span class="number">11</span>.<span class="number">69</span></span><br><span class="line"></span><br><span class="line">:: 使用 PowerShell 动态计算 A4 分辨率（宽度和高度）</span><br><span class="line"><span class="keyword">for</span> /f &quot;tokens=*&quot; <span class="variable">%%A</span> <span class="keyword">in</span> (&#x27;powershell -Command &quot;[math]::Round(<span class="variable">%a4_width_inch%</span> * <span class="variable">%dpi%</span>)&quot;&#x27;) <span class="keyword">do</span> <span class="built_in">set</span> width=<span class="variable">%%A</span></span><br><span class="line"><span class="keyword">for</span> /f &quot;tokens=*&quot; <span class="variable">%%A</span> <span class="keyword">in</span> (&#x27;powershell -Command &quot;[math]::Round(<span class="variable">%a4_height_inch%</span> * <span class="variable">%dpi%</span>)&quot;&#x27;) <span class="keyword">do</span> <span class="built_in">set</span> height=<span class="variable">%%A</span></span><br><span class="line"></span><br><span class="line">:: 输出宽高以及质量参数以供验证</span><br><span class="line"><span class="built_in">echo</span> DPI: <span class="variable">%dpi%</span></span><br><span class="line"><span class="built_in">echo</span> Width: <span class="variable">%width%</span> pixels</span><br><span class="line"><span class="built_in">echo</span> Height: <span class="variable">%height%</span> pixels</span><br><span class="line"><span class="built_in">echo</span> Quality: <span class="variable">%quality%</span>%</span><br><span class="line"></span><br><span class="line">:: 验证宽高是否正确</span><br><span class="line"><span class="keyword">if</span> &quot;<span class="variable">%width%</span>&quot;==&quot;&quot; (</span><br><span class="line">    <span class="built_in">echo</span> 宽度计算失败，请检查 PowerShell 是否可用或计算逻辑是否正确。</span><br><span class="line">    <span class="built_in">pause</span></span><br><span class="line">    <span class="keyword">exit</span> /b</span><br><span class="line">)</span><br><span class="line"><span class="keyword">if</span> &quot;<span class="variable">%height%</span>&quot;==&quot;&quot; (</span><br><span class="line">    <span class="built_in">echo</span> 高度计算失败，请检查 PowerShell 是否可用或计算逻辑是否正确。</span><br><span class="line">    <span class="built_in">pause</span></span><br><span class="line">    <span class="keyword">exit</span> /b</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">:: 遍历当前目录中的所有 PDF 文件</span><br><span class="line"><span class="keyword">for</span> <span class="variable">%%f</span> <span class="keyword">in</span> (*.pdf) <span class="keyword">do</span> (</span><br><span class="line">    :: 获取文件名（不带扩展名）</span><br><span class="line">    <span class="built_in">set</span> filename=<span class="variable">%%~</span>nf</span><br><span class="line">    :: 创建与 PDF 同名的输出目录</span><br><span class="line">    <span class="built_in">mkdir</span> &quot;<span class="variable">!filename!</span>&quot;</span><br><span class="line">    :: 转换 PDF 为图片，确保背景为白色，大小统一，设置质量</span><br><span class="line">    magick -density <span class="variable">%dpi%</span> &quot;<span class="variable">%%f</span>&quot; -background white -alpha remove -alpha off -resize <span class="variable">%width%</span>x<span class="variable">%height%</span> -gravity center -extent <span class="variable">%width%</span>x<span class="variable">%height%</span> -quality <span class="variable">%quality%</span> &quot;<span class="variable">!filename!</span>\page-<span class="variable">%%d</span>.webp&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> 转换完成！</span><br><span class="line"><span class="built_in">pause</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="使用心得"><a href="#使用心得" class="headerlink" title="使用心得"></a>使用心得</h2><h3 id="参数调优经验"><a href="#参数调优经验" class="headerlink" title="参数调优经验"></a>参数调优经验</h3><ul>
+<li><p><strong>DPI设置</strong>：</p>
+<ul>
+<li>150 DPI：适合大多数场景，文件大小和质量比较平衡</li>
+<li>200 DPI：高清显示，文件稍大</li>
+<li>100 DPI：文件最小，但可能不够清晰</li>
+</ul>
+</li>
+<li><p><strong>质量设置</strong>：</p>
+<ul>
+<li>80-90：推荐设置</li>
+<li>70以下：文件小但质量一般</li>
+<li>95以上：质量好但文件大</li>
+</ul>
+</li>
+</ul>
+<h3 id="效果对比"><a href="#效果对比" class="headerlink" title="效果对比"></a>效果对比</h3><p>转换后的文件结构：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">项目/</span><br><span class="line">├── convert_pdf_to_images.bat</span><br><span class="line">├── 政策文件.pdf</span><br><span class="line">└── 政策文件/</span><br><span class="line">    ├── page-0.webp</span><br><span class="line">    ├── page-1.webp</span><br><span class="line">    └── ...</span><br></pre></td></tr></table></figure>
+
+<p><strong>文件大小对比</strong>：</p>
+<ul>
+<li>原PDF：41.6MB</li>
+<li>转换后：约5.3M（WebP格式）</li>
+<li>压缩率：约87%</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这个方案在一定程度上解决了我的问题：</p>
+<ul>
+<li>✅ 1M以上的文件体积基本都大幅压缩了</li>
+<li>✅ 加载速度明显提升</li>
+<li>✅ 保持了良好的显示效果</li>
+<li>✅ 支持批量处理，效率高</li>
+</ul>
+<p>对于类似的需求，我觉得这个方案还是挺实用的。如果只是展示内容，转成图片确实比直接使用PDF要好很多。</p>
+<hr>
+<p><em>记录一下这个实用的解决方案，以后遇到类似需求可以直接用。</em></p>
 
     </div>
 
@@ -261,7 +319,9 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/pdf%E8%BD%AC%E5%9B%BE%E7%89%87/" rel="tag"># pdf转图片</a>
+              <a href="/tags/PDF%E8%BD%AC%E5%9B%BE%E7%89%87/" rel="tag"># PDF转图片</a>
+              <a href="/tags/%E5%89%8D%E7%AB%AF%E4%BC%98%E5%8C%96/" rel="tag"># 前端优化</a>
+              <a href="/tags/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/" rel="tag"># 实用工具</a>
           </div>
 
         
@@ -332,7 +392,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8A%E5%A4%A9%E9%81%87%E5%88%B0%E4%B8%80%E4%B8%AA%E9%9C%80%E6%B1%82%EF%BC%8C%E8%A6%81%E6%B1%82%E5%BC%B9%E7%AA%97%E5%B1%95%E7%A4%BA%E6%94%BF%E7%AD%96pdf%E5%86%85%E5%AE%B9%EF%BC%8C%E4%B8%BA%E4%BA%86%E6%96%B9%E4%BE%BF%EF%BC%8C%E6%96%87%E4%BB%B6%E7%9B%B4%E6%8E%A5%E6%94%BE%E5%9C%A8%E5%89%8D%E7%AB%AF%E9%A1%B9%E7%9B%AE%E4%B8%AD%E3%80%82%E7%94%B1%E4%BA%8Epdf%E6%96%87%E4%BB%B6%E4%BD%93%E7%A7%AF%E8%BE%83%E5%A4%A7%EF%BC%8C%E4%B8%94%E4%BB%85%E9%9C%80%E5%B1%95%E7%A4%BA%E5%85%B6%E5%86%85%E5%AE%B9%EF%BC%8C%E6%95%85%E5%86%B3%E5%AE%9A%E5%B0%86pdf%E8%BD%AC%E6%88%90%E5%9B%BE%E7%89%87%E6%94%BE%E5%9C%A8%E9%A1%B9%E7%9B%AE%E4%B8%AD%EF%BC%8C%E4%BB%A5%E7%BC%A9%E5%B0%8F%E6%96%87%E4%BB%B6%E4%BD%93%E7%A7%AF"><span class="nav-number">1.</span> <span class="nav-text">今天遇到一个需求，要求弹窗展示政策pdf内容，为了方便，文件直接放在前端项目中。由于pdf文件体积较大，且仅需展示其内容，故决定将pdf转成图片放在项目中，以缩小文件体积</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%9A%E4%BD%BF%E7%94%A8-ImageMagick-Ghostscript-%E5%A4%84%E7%90%86pdf%E6%96%87%E4%BB%B6"><span class="nav-number">1.1.</span> <span class="nav-text">解决方案：使用 ImageMagick + Ghostscript 处理pdf文件</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">2.</span> <span class="nav-text">解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7%E5%87%86%E5%A4%87"><span class="nav-number">2.1.</span> <span class="nav-text">工具准备</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%B9%E9%87%8F%E8%BD%AC%E6%8D%A2%E8%84%9A%E6%9C%AC"><span class="nav-number">3.</span> <span class="nav-text">批量转换脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97"><span class="nav-number">4.</span> <span class="nav-text">使用心得</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E8%B0%83%E4%BC%98%E7%BB%8F%E9%AA%8C"><span class="nav-number">4.1.</span> <span class="nav-text">参数调优经验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%88%E6%9E%9C%E5%AF%B9%E6%AF%94"><span class="nav-number">4.2.</span> <span class="nav-text">效果对比</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -359,7 +419,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -408,7 +468,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1 分钟</span>
+    <span title="站点阅读时长">2 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
