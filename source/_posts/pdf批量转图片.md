@@ -1,12 +1,17 @@
 ---
 title: pdf批量转图片
-date: 2025-06-23 17:52:44
+date: 2025-06-24 14:49:22
 tags:
+  - pdf
+categories:
+  - 知识点记录
 ---
 
-## 遇到一个需求，要求弹窗展示政策pdf内容，为了方便，文件直接放在前端项目中。由于pdf文件体积较大，且仅需展示其内容，故决定将pdf转成图片放在项目中，以缩小文件体积
+## 今天遇到一个需求，要求弹窗展示政策pdf内容，为了方便，文件直接放在前端项目中。由于pdf文件体积较大，且仅需展示其内容，故决定将pdf转成图片放在项目中，以缩小文件体积
 
 ### 解决方案：使用 [ImageMagick](https://www.imagemagick.org/) + [Ghostscript](https://www.ghostscript.com/) 处理pdf文件
+
+以下是封装过的bat脚本
 
 ```bat
 @echo off
