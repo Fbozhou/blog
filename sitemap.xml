@@ -19,6 +19,24 @@
     <priority>0.6</priority>
   </url>
   
+  <url>
+    <loc>https://blog.fangbozhou.com/categories/index.html</loc>
+    
+    <lastmod>2025-06-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.fangbozhou.com/tags/index.html</loc>
+    
+    <lastmod>2025-06-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
 
   <url>
     <loc>https://blog.fangbozhou.com/</loc>
@@ -29,7 +47,7 @@
 
   
   <url>
-    <loc>https://blog.fangbozhou.com/tags/pdf/</loc>
+    <loc>https://blog.fangbozhou.com/tags/pdf%E8%BD%AC%E5%9B%BE%E7%89%87/</loc>
     <lastmod>2025-06-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -38,7 +56,7 @@
 
   
   <url>
-    <loc>https://blog.fangbozhou.com/categories/%E7%9F%A5%E8%AF%86%E7%82%B9%E8%AE%B0%E5%BD%95/</loc>
+    <loc>https://blog.fangbozhou.com/categories/%E7%9F%A5%E8%AF%86%E8%AE%B0%E5%BD%95/</loc>
     <lastmod>2025-06-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
