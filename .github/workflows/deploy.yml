@@ -1,12 +1,12 @@
-name: Deploy Hexo Blog to GitHub Pages
+name: Deploy Hexo Blog to Cloud Server
 
 on:
   push:
     branches:
-      - main  # 每次推送 main 分支都会触发部署
+      - main  # 可根据你博客源码的分支修改
 
 jobs:
-  build-deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,9 +24,13 @@ jobs:
       - name: Generate static files
         run: npx hexo generate
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
-          publish_branch: gh-pages
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan 114.132.122.142 >> ~/.ssh/known_hosts
+
+      - name: Deploy to cloud server via SCP
+        run: |
+          scp -r ./public/* root@114.132.122.142:/home/webapps/blog/
