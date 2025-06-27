@@ -1,36 +1,45 @@
-name: Deploy Hexo Blog to Cloud Server
+name: Hexo Deploy to Server
 
 on:
   push:
     branches:
-      - main  # 可根据你博客源码的分支修改
+      - main  # 或你博客源码的分支名
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout source code
-        uses: actions/checkout@v3
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: npm install
 
-      - name: Generate static files
+      - name: Build Hexo Site
         run: npx hexo generate
 
-      - name: Setup SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan 114.132.122.142 >> ~/.ssh/known_hosts
+      - name: Deploy to Server via SCP and reload pm2
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: root
+          key: ${{ secrets.DEPLOY_KEY }}
+          port: 22
+          source: "public/*"
+          target: "/home/webapps/blog/"
+          rm: true  # 删除目标目录下旧文件再上传（谨慎使用）
 
-      - name: Deploy to cloud server via SCP
-        run: |
-          scp -r ./public/* root@114.132.122.142:/home/webapps/blog/
+      - name: Reload pm2
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: root
+          key: ${{ secrets.DEPLOY_KEY }}
+          port: 22
+          script: pm2 reload hexo-blog
