@@ -20,31 +20,34 @@
     var CONFIG = {"hostname":"blog.fangbozhou.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="记录一些点滴">
-<meta property="og:type" content="website">
-<meta property="og:title" content="BLOG">
-<meta property="og:url" content="https://blog.fangbozhou.com/index.html">
+  <meta name="description" content="背景最近在做的项目有老年人模式的需求——也就是动态切换字体大小、元素间距等。 解决方案项目使用element-ui、sass、sass-loader，在scss文件中定义变量，并利用:export导出变量，供JS使用。JS中读取变量，使用setProperty方法设置全局css变量。项目中所有需要动态改变大小的，都不直接使用px，而是使用css变量进行设置。 使用开关动态切换常规&#x2F;老年人">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网页适老化">
+<meta property="og:url" content="https://blog.fangbozhou.com/2025/06/25/%E9%80%82%E8%80%81%E5%8C%96/index.html">
 <meta property="og:site_name" content="BLOG">
-<meta property="og:description" content="记录一些点滴">
+<meta property="og:description" content="背景最近在做的项目有老年人模式的需求——也就是动态切换字体大小、元素间距等。 解决方案项目使用element-ui、sass、sass-loader，在scss文件中定义变量，并利用:export导出变量，供JS使用。JS中读取变量，使用setProperty方法设置全局css变量。项目中所有需要动态改变大小的，都不直接使用px，而是使用css变量进行设置。 使用开关动态切换常规&#x2F;老年人">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-06-25T03:02:42.000Z">
+<meta property="article:modified_time" content="2025-06-30T02:45:58.218Z">
 <meta property="article:author" content="fang bozhou">
-<meta property="article:tag" content="前端 Vue Js Css Html">
+<meta property="article:tag" content="老年人模式">
+<meta property="article:tag" content="动态调整字体大小">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://blog.fangbozhou.com/">
+<link rel="canonical" href="https://blog.fangbozhou.com/2025/06/25/%E9%80%82%E8%80%81%E5%8C%96/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>BLOG</title>
+  <title>网页适老化 | BLOG</title>
   
 
 
@@ -180,9 +183,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -198,10 +202,9 @@
       <meta itemprop="name" content="BLOG">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/06/25/%E9%80%82%E8%80%81%E5%8C%96/" class="post-title-link" itemprop="url">网页适老化</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          网页适老化
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -254,7 +257,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近在做的项目有老年人模式的需求——也就是动态切换字体大小、元素间距等。</p>
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近在做的项目有老年人模式的需求——也就是动态切换字体大小、元素间距等。</p>
 <h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>项目使用<code>element-ui</code>、<code>sass</code>、<code>sass-loader</code>，在scss文件中定义变量，并利用<code>:export</code>导出变量，供JS使用。JS中读取变量，使用<code>setProperty</code>方法设置全局css变量。项目中所有需要动态改变大小的，都不直接使用px，而是使用css变量进行设置。</p>
 <p>使用开关动态切换常规&#x2F;老年人模式变量，以切换全局css变量值。</p>
 <p>以下是代码的实现：</p>
@@ -270,257 +273,34 @@
 
 <h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>这个方案的效果还是比较满意的，衍生出来还可以封装成组件，实现大中小三种字号切换的模式</p>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/%E8%80%81%E5%B9%B4%E4%BA%BA%E6%A8%A1%E5%BC%8F/" rel="tag"># 老年人模式</a>
+              <a href="/tags/%E5%8A%A8%E6%80%81%E8%B0%83%E6%95%B4%E5%AD%97%E4%BD%93%E5%A4%A7%E5%B0%8F/" rel="tag"># 动态调整字体大小</a>
+          </div>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.fangbozhou.com/2025/06/24/pdf%E6%89%B9%E9%87%8F%E8%BD%AC%E5%9B%BE%E7%89%87/">
+        
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="fang bozhou">
-      <meta itemprop="description" content="记录一些点滴">
-    </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2025/06/24/pdf%E6%89%B9%E9%87%8F%E8%BD%AC%E5%9B%BE%E7%89%87/" class="post-title-link" itemprop="url">PDF批量转图片</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2025-06-24 14:49:22" itemprop="dateCreated datePublished" datetime="2025-06-24T14:49:22+08:00">2025-06-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-06-30 10:45:58" itemprop="dateModified" datetime="2025-06-30T10:45:58+08:00">2025-06-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">技术笔记</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近在做一个项目，需要在弹窗里展示政策PDF内容。本来想着直接把PDF文件放在前端项目里，但一个文件大几十M，加载起来很慢。而且客户不想看到PDF在网页中的预览框。<br>考虑到只是展示内容，不需要交互功能，就想着把PDF转成图片，这样既能缩小文件体积，又能提升加载速度。</p>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>经过一番搜索，发现 <strong>ImageMagick</strong> 是个不错的选择。它不仅能处理PDF转图片，还支持批量处理，正好符合我的需求。</p>
-<h3 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h3><ol>
-<li><p><strong>安装 <a target="_blank" rel="noopener" href="https://www.imagemagick.org/">ImageMagick</a></strong></p>
-<ul>
-<li>Windows: 下载安装包或使用 <code>choco install imagemagick</code></li>
-<li>安装后记得重启命令行</li>
-</ul>
-</li>
-<li><p><strong>验证安装</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">magick --version</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>安装ImageMagick底层依赖 <a target="_blank" rel="noopener" href="https://www.ghostscript.com/">Ghostscript</a></strong></p>
-<ul>
-<li>下载适合系统版本的安装包（通常是 <code>gswin64.exe</code>）</li>
-</ul>
-</li>
-<li><p><strong>验证安装</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gswin64c -version</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="批量转换脚本"><a href="#批量转换脚本" class="headerlink" title="批量转换脚本"></a>批量转换脚本</h2><p>为了方便使用，我写了个批处理脚本，支持批量转换PDF文件：</p>
-<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">setlocal</span> enabledelayedexpansion</span><br><span class="line"></span><br><span class="line">:: 设置目标 DPI，调整这里即可改变分辨率</span><br><span class="line"><span class="built_in">set</span> dpi=<span class="number">150</span></span><br><span class="line"></span><br><span class="line">:: 设置输出图片的质量（范围：<span class="number">1</span>-<span class="number">100</span>）</span><br><span class="line"><span class="built_in">set</span> quality=<span class="number">80</span></span><br><span class="line"></span><br><span class="line">:: 定义 A4 的实际尺寸（单位：英寸）</span><br><span class="line"><span class="built_in">set</span> a4_width_inch=<span class="number">8</span>.<span class="number">27</span></span><br><span class="line"><span class="built_in">set</span> a4_height_inch=<span class="number">11</span>.<span class="number">69</span></span><br><span class="line"></span><br><span class="line">:: 使用 PowerShell 动态计算 A4 分辨率（宽度和高度）</span><br><span class="line"><span class="keyword">for</span> /f &quot;tokens=*&quot; <span class="variable">%%A</span> <span class="keyword">in</span> (&#x27;powershell -Command &quot;[math]::Round(<span class="variable">%a4_width_inch%</span> * <span class="variable">%dpi%</span>)&quot;&#x27;) <span class="keyword">do</span> <span class="built_in">set</span> width=<span class="variable">%%A</span></span><br><span class="line"><span class="keyword">for</span> /f &quot;tokens=*&quot; <span class="variable">%%A</span> <span class="keyword">in</span> (&#x27;powershell -Command &quot;[math]::Round(<span class="variable">%a4_height_inch%</span> * <span class="variable">%dpi%</span>)&quot;&#x27;) <span class="keyword">do</span> <span class="built_in">set</span> height=<span class="variable">%%A</span></span><br><span class="line"></span><br><span class="line">:: 输出宽高以及质量参数以供验证</span><br><span class="line"><span class="built_in">echo</span> DPI: <span class="variable">%dpi%</span></span><br><span class="line"><span class="built_in">echo</span> Width: <span class="variable">%width%</span> pixels</span><br><span class="line"><span class="built_in">echo</span> Height: <span class="variable">%height%</span> pixels</span><br><span class="line"><span class="built_in">echo</span> Quality: <span class="variable">%quality%</span>%</span><br><span class="line"></span><br><span class="line">:: 验证宽高是否正确</span><br><span class="line"><span class="keyword">if</span> &quot;<span class="variable">%width%</span>&quot;==&quot;&quot; (</span><br><span class="line">    <span class="built_in">echo</span> 宽度计算失败，请检查 PowerShell 是否可用或计算逻辑是否正确。</span><br><span class="line">    <span class="built_in">pause</span></span><br><span class="line">    <span class="keyword">exit</span> /b</span><br><span class="line">)</span><br><span class="line"><span class="keyword">if</span> &quot;<span class="variable">%height%</span>&quot;==&quot;&quot; (</span><br><span class="line">    <span class="built_in">echo</span> 高度计算失败，请检查 PowerShell 是否可用或计算逻辑是否正确。</span><br><span class="line">    <span class="built_in">pause</span></span><br><span class="line">    <span class="keyword">exit</span> /b</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">:: 遍历当前目录中的所有 PDF 文件</span><br><span class="line"><span class="keyword">for</span> <span class="variable">%%f</span> <span class="keyword">in</span> (*.pdf) <span class="keyword">do</span> (</span><br><span class="line">    :: 获取文件名（不带扩展名）</span><br><span class="line">    <span class="built_in">set</span> filename=<span class="variable">%%~</span>nf</span><br><span class="line">    :: 创建与 PDF 同名的输出目录</span><br><span class="line">    <span class="built_in">mkdir</span> &quot;<span class="variable">!filename!</span>&quot;</span><br><span class="line">    :: 转换 PDF 为图片，确保背景为白色，大小统一，设置质量</span><br><span class="line">    magick -density <span class="variable">%dpi%</span> &quot;<span class="variable">%%f</span>&quot; -background white -alpha remove -alpha off -resize <span class="variable">%width%</span>x<span class="variable">%height%</span> -gravity center -extent <span class="variable">%width%</span>x<span class="variable">%height%</span> -quality <span class="variable">%quality%</span> &quot;<span class="variable">!filename!</span>\page-<span class="variable">%%d</span>.webp&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> 转换完成！</span><br><span class="line"><span class="built_in">pause</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="使用心得"><a href="#使用心得" class="headerlink" title="使用心得"></a>使用心得</h2><h3 id="参数调优经验"><a href="#参数调优经验" class="headerlink" title="参数调优经验"></a>参数调优经验</h3><ul>
-<li><p><strong>DPI设置</strong>：</p>
-<ul>
-<li>150 DPI：适合大多数场景，文件大小和质量比较平衡</li>
-<li>200 DPI：高清显示，文件稍大</li>
-<li>100 DPI：文件最小，但可能不够清晰</li>
-</ul>
-</li>
-<li><p><strong>质量设置</strong>：</p>
-<ul>
-<li>80-90：推荐设置</li>
-<li>70以下：文件小但质量一般</li>
-<li>95以上：质量好但文件大</li>
-</ul>
-</li>
-</ul>
-<h3 id="效果对比"><a href="#效果对比" class="headerlink" title="效果对比"></a>效果对比</h3><p>转换后的文件结构：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">项目/</span><br><span class="line">├── convert_pdf_to_images.bat</span><br><span class="line">├── 政策文件.pdf</span><br><span class="line">└── 政策文件/</span><br><span class="line">    ├── page-0.webp</span><br><span class="line">    ├── page-1.webp</span><br><span class="line">    └── ...</span><br></pre></td></tr></table></figure>
-
-<p><strong>文件大小对比</strong>：</p>
-<ul>
-<li>原PDF：41.6MB</li>
-<li>转换后：约5.3M（WebP格式）</li>
-<li>压缩率：约87%</li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这个方案在一定程度上解决了我的问题：</p>
-<ul>
-<li>✅ 1M以上的文件体积基本都大幅压缩了</li>
-<li>✅ 加载速度明显提升</li>
-<li>✅ 保持了良好的显示效果</li>
-<li>✅ 支持批量处理，效率高</li>
-</ul>
-<p>对于类似的需求，我觉得这个方案还是挺实用的。如果只是展示内容，转成图片确实比直接使用PDF要好很多。</p>
-<hr>
-<p><em>记录一下这个实用的解决方案，以后遇到类似需求可以直接用。</em></p>
-
-      
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2025/06/24/pdf%E6%89%B9%E9%87%8F%E8%BD%AC%E5%9B%BE%E7%89%87/" rel="prev" title="PDF批量转图片">
+      <i class="fa fa-chevron-left"></i> PDF批量转图片
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.fangbozhou.com/2021/06/23/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="fang bozhou">
-      <meta itemprop="description" content="记录一些点滴">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/23/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-06-23 14:49:22" itemprop="dateCreated datePublished" datetime="2021-06-23T14:49:22+08:00">2021-06-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2025-06-30 10:45:58" itemprop="dateModified" datetime="2025-06-30T10:45:58+08:00">2025-06-30</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>363</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
   
 
 
@@ -573,6 +353,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">1.1.</span> <span class="nav-text">解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.1.</span> <span class="nav-text">目录结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E4%BB%A3%E7%A0%81"><span class="nav-number">1.1.2.</span> <span class="nav-text">关键代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E8%AF%AD"><span class="nav-number">1.2.</span> <span class="nav-text">结语</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
