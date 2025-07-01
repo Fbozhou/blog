@@ -691,7 +691,7 @@ comments:
 
 twikoo:
   enable: true
-  envId: http://twikoo.fangbozhou.com  # 或 http://ip:port，改成你自己的地址
+  envId: https://twikoo.fangbozhou.com  # 或 http://ip:port，改成你自己的地址
   region: ''
   path: window.location.pathname
   visitor: true
