@@ -27,8 +27,8 @@
 <meta property="og:description" content="背景最近在做的项目有老年人模式的需求——也就是动态切换字体大小、元素间距等。 解决方案项目使用element-ui、sass、sass-loader，在scss文件中定义变量，并利用:export导出变量，供JS使用。JS中读取变量，使用setProperty方法设置全局css变量。项目中所有需要动态改变大小的，都不直接使用px，而是使用css变量进行设置。 使用开关动态切换常规&#x2F;老年人">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-06-25T03:02:42.000Z">
-<meta property="article:modified_time" content="2025-07-05T07:55:03.078Z">
-<meta property="article:author" content="fang bozhou">
+<meta property="article:modified_time" content="2025-07-16T02:13:22.922Z">
+<meta property="article:author" content="fbz">
 <meta property="article:tag" content="老年人模式">
 <meta property="article:tag" content="动态调整字体大小">
 <meta name="twitter:card" content="summary">
@@ -158,20 +158,20 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">1.1.</span> <span class="nav-text">解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.1.</span> <span class="nav-text">目录结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E4%BB%A3%E7%A0%81"><span class="nav-number">1.1.2.</span> <span class="nav-text">关键代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E8%AF%AD"><span class="nav-number">1.2.</span> <span class="nav-text">结语</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-text">背景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-text">解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="nav-text">目录结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E4%BB%A3%E7%A0%81"><span class="nav-text">关键代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E8%AF%AD"><span class="nav-text">结语</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
         <div class="site-overview-wrap sidebar-panel">
           <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">fang bozhou</p>
+  <p class="site-author-name" itemprop="name">fbz</p>
   <div class="site-description" itemprop="description">记录一些点滴</div>
 </div>
 <div class="site-state-wrap animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -182,7 +182,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -221,7 +221,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="fang bozhou">
+      <meta itemprop="name" content="fbz">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -253,7 +253,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-07-05 15:55:03" itemprop="dateModified" datetime="2025-07-05T15:55:03+08:00">2025-07-05</time>
+      <time title="修改时间：2025-07-16 10:13:22" itemprop="dateModified" datetime="2025-07-16T10:13:22+08:00">2025-07-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -334,6 +334,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2025/07/07/hexo%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="next" title="hexo的使用">
+                  hexo的使用 <i class="fa fa-angle-right"></i>
+                </a>
             </div>
           </div>
     </footer>
@@ -358,20 +361,20 @@
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>
-    <span class="author" itemprop="copyrightHolder">fang bozhou</span>
+    <span class="author" itemprop="copyrightHolder">fbz</span>
   </div>
 <div class="wordcount">
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">5k</span>
+    <span title="站点总字数">10k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">5 分钟</span>
+    <span title="站点阅读时长">9 分钟</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动

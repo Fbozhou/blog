@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.fangbozhou.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.23.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":{"twikoo":{"order":-1,"text":"Twikoo 评论"},"disqus":{"text":"Load Disqus","order":-1}}},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":true}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="背景前几年搭建了博客，但是一直都没有投入编写内容，最近又捡起来重新折腾了一下，重新梳理了一下hexo的使用，加深了理解，在此记录一下做个备忘。 一、安装与使用1. 安装 Hexo CLI1npm install -g hexo-cli  2. 初始化博客项目123hexo init blogcd blognpm install  3. 安装并启用主题个人喜欢Next主题的样式，因此这里选用Next">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo的使用">
+<meta property="og:url" content="https://blog.fangbozhou.com/2025/07/07/hexo%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="BLOG">
+<meta property="og:description" content="背景前几年搭建了博客，但是一直都没有投入编写内容，最近又捡起来重新折腾了一下，重新梳理了一下hexo的使用，加深了理解，在此记录一下做个备忘。 一、安装与使用1. 安装 Hexo CLI1npm install -g hexo-cli  2. 初始化博客项目123hexo init blogcd blognpm install  3. 安装并启用主题个人喜欢Next主题的样式，因此这里选用Next">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-07-07T03:45:46.000Z">
+<meta property="article:modified_time" content="2025-07-16T02:13:22.922Z">
+<meta property="article:author" content="fbz">
+<meta property="article:tag" content="HEXO">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://blog.fangbozhou.com/2025/07/07/hexo%E7%9A%84%E4%BD%BF%E7%94%A8/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.fangbozhou.com/2025/07/07/hexo%E7%9A%84%E4%BD%BF%E7%94%A8/","path":"2025/07/07/hexo的使用/","title":"hexo的使用"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>hexo的使用 | BLOG</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">BLOG</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8"><span class="nav-text">一、安装与使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%AE%89%E8%A3%85-Hexo-CLI"><span class="nav-text">1. 安装 Hexo CLI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8D%9A%E5%AE%A2%E9%A1%B9%E7%9B%AE"><span class="nav-text">2. 初始化博客项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%AE%89%E8%A3%85%E5%B9%B6%E5%90%AF%E7%94%A8%E4%B8%BB%E9%A2%98"><span class="nav-text">3. 安装并启用主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%88%9B%E5%BB%BA%E6%96%87%E7%AB%A0"><span class="nav-text">4. 创建文章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E6%9C%AC%E5%9C%B0%E9%A2%84%E8%A7%88"><span class="nav-text">5. 本地预览</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%8E%A8%E8%8D%90%E6%8F%92%E4%BB%B6"><span class="nav-text">二、推荐插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-hexo-generator-sitemap"><span class="nav-text">1. hexo-generator-sitemap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-hexo-generator-searchdb"><span class="nav-text">2. hexo-generator-searchdb</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E9%83%A8%E7%BD%B2%E4%B8%8ESEO%E4%BC%98%E5%8C%96"><span class="nav-text">三、部署与SEO优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2%E6%96%B9%E6%A1%88"><span class="nav-text">部署方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%81%E4%B9%A6%E7%94%B3%E8%AF%B7"><span class="nav-text">证书申请</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nginx%E9%85%8D%E7%BD%AE"><span class="nav-text">nginx配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SEO%E4%BC%98%E5%8C%96"><span class="nav-text">SEO优化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%BC%80%E5%90%AF%E7%AB%99%E5%86%85%E8%AF%84%E8%AE%BA"><span class="nav-text">四、开启站内评论</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">fbz</p>
+  <div class="site-description" itemprop="description">记录一些点滴</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Fbozhou" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Fbozhou" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:873067641@qq.com" title="E-Mail → mailto:873067641@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.fangbozhou.com/2025/07/07/hexo%E7%9A%84%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="fbz">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+      <meta itemprop="description" content="记录一些点滴">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="hexo的使用 | BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          hexo的使用
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-07-07 11:45:46" itemprop="dateCreated datePublished" datetime="2025-07-07T11:45:46+08:00">2025-07-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-07-16 10:13:22" itemprop="dateModified" datetime="2025-07-16T10:13:22+08:00">2025-07-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">技术笔记</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2025/07/07/hexo%E7%9A%84%E4%BD%BF%E7%94%A8/" class="post-meta-item twikoo_visitors" data-flag-title="hexo的使用" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="twikoo_visitors"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>前几年搭建了博客，但是一直都没有投入编写内容，最近又捡起来重新折腾了一下，重新梳理了一下hexo的使用，加深了理解，在此记录一下做个备忘。</p>
+<h2 id="一、安装与使用"><a href="#一、安装与使用" class="headerlink" title="一、安装与使用"></a>一、安装与使用</h2><h3 id="1-安装-Hexo-CLI"><a href="#1-安装-Hexo-CLI" class="headerlink" title="1. 安装 Hexo CLI"></a>1. 安装 Hexo CLI</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-初始化博客项目"><a href="#2-初始化博客项目" class="headerlink" title="2. 初始化博客项目"></a>2. 初始化博客项目</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo init blog</span><br><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-安装并启用主题"><a href="#3-安装并启用主题" class="headerlink" title="3. 安装并启用主题"></a>3. 安装并启用主题</h3><p>个人喜欢Next主题的样式，因此这里选用<a target="_blank" rel="noopener" href="https://github.com/next-theme/hexo-theme-next">Next主题</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用npm安装主题</span></span><br><span class="line">npm install hexo-theme-next</span><br><span class="line"><span class="comment"># 拷贝配置文件到根目录</span></span><br><span class="line"><span class="built_in">cp</span> node_modules/hexo-theme-next/_config.yml _config.next.yml</span><br></pre></td></tr></table></figure>
+
+<p>修改<code>_config.yml</code>中的<code>theme</code>，以启用next主题</p>
+<figure class="highlight yml"><figcaption><span>Hexo config file</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">theme:</span> <span class="string">next</span></span><br></pre></td></tr></table></figure>
+
+<p>可以在<code>_config.next.yml</code>中修改<code>scheme</code>以切换系统样式，个人喜欢<code>gemini</code>的设计</p>
+<figure class="highlight yml"><figcaption><span>Next config file</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">scheme:</span> <span class="string">Gemini</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-创建文章"><a href="#4-创建文章" class="headerlink" title="4. 创建文章"></a>4. 创建文章</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new <span class="string">&quot;文章标题&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>生成文件位于：<code>source/_posts/文章标题.md</code></p>
+<h3 id="5-本地预览"><a href="#5-本地预览" class="headerlink" title="5. 本地预览"></a>5. 本地预览</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+
+<p>访问：<a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> 进行本地预览</p>
+<h2 id="二、推荐插件"><a href="#二、推荐插件" class="headerlink" title="二、推荐插件"></a>二、推荐插件</h2><h3 id="1-hexo-generator-sitemap"><a href="#1-hexo-generator-sitemap" class="headerlink" title="1. hexo-generator-sitemap"></a>1. hexo-generator-sitemap</h3><p>部署&#x2F;运行时会生成sitemap</p>
+<p>执行<code>npm i hexo-generator-sitemap</code>安装</p>
+<p>并在配置文件<code>_config.yml</code>中添加以下配置，重新编译运行并访问<a target="_blank" rel="noopener" href="http://localhost:4000/sitemap.xml">http://localhost:4000/sitemap.xml</a>即可看到网站地图的输出了</p>
+<figure class="highlight yml"><figcaption><span>Hexo config file</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">sitemap:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">sitemap.xml</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-hexo-generator-searchdb"><a href="#2-hexo-generator-searchdb" class="headerlink" title="2. hexo-generator-searchdb"></a>2. hexo-generator-searchdb</h3><p>开启本地搜索功能</p>
+<p>执行<code>npm i hexo-generator-searchdb</code>安装</p>
+<p>并在配置文件<code>_config.yml</code>中添加以下配置，重新编译运行后点击菜单栏的“搜索”按钮，即可搜索站内博客</p>
+<figure class="highlight yml"><figcaption><span>Hexo config file</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">search:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="三、部署与SEO优化"><a href="#三、部署与SEO优化" class="headerlink" title="三、部署与SEO优化"></a>三、部署与SEO优化</h2><h3 id="部署方案"><a href="#部署方案" class="headerlink" title="部署方案"></a>部署方案</h3><p>一开始采用GitHub托管，有提交自动触发构建并部署，然后域名解析到GitHub部署页面的方案。但是由于gfw，墙内访问比较困难（公司破网挂不挂梯子都很难打开自己的博客），且添加评论时，会遇到跨域问题不好解决。遂改为在服务器上打包构建，用nginx部署。</p>
+<p>在服务器上拉取仓库并执行<code>npm i</code>安装依赖，在仓库根目录创建部署脚本<code>deploy.sh</code></p>
+<figure class="highlight sh"><figcaption><span>deploy.sh</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;🔄 拉取最新代码...&quot;</span></span><br><span class="line"><span class="built_in">cd</span> /home/webapps/blog</span><br><span class="line">git pull origin main</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;📦 安装依赖...&quot;</span></span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;🧹 清理旧生成文件...&quot;</span></span><br><span class="line">npx hexo clean</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;📝 生成静态文件...&quot;</span></span><br><span class="line">npx hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>输入<code>bash /path/to/deploy.sh</code>即可执行部署脚本自动打包构建。</p>
+<h3 id="证书申请"><a href="#证书申请" class="headerlink" title="证书申请"></a>证书申请</h3><p>配置nginx之前，还需要注册一下证书以开启https协议。</p>
+<p>首先确保<code>/etc/ssl/certs</code>、<code>/etc/ssl/private</code>目录存在，若不存在，执行以下命令创建目录并赋予权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p /etc/ssl/private</span><br><span class="line"><span class="built_in">chmod</span> 700 /etc/ssl/private</span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> -p /etc/ssl/certs</span><br><span class="line"><span class="built_in">chmod</span> 700 /etc/ssl/certs</span><br></pre></td></tr></table></figure>
+
+<p>执行以下命令签发证书，指定letsencrypt服务可以不用注册邮箱，且支持自动续期</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 先停止nginx服务</span></span><br><span class="line">bt stop nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 签发证书</span></span><br><span class="line">acme.sh --issue --standalone -d your.domain.com --ecc --server letsencrypt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装证书，最后的reloadcmd修改为本机重载ng配置的指令，我用宝塔面板安装的，因此执行bt reload nginx</span></span><br><span class="line">acme.sh --install-cert -d your.domain.com --ecc \</span><br><span class="line">  --key-file       /etc/ssl/private/your.domain.com.key \</span><br><span class="line">  --fullchain-file /etc/ssl/certs/your.domain.com_bundle.crt \</span><br><span class="line">  --reloadcmd     <span class="string">&quot;bt reload nginx&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 重载nginx</span></span><br><span class="line">bt reload nginx</span><br></pre></td></tr></table></figure>
+
+<h3 id="nginx配置"><a href="#nginx配置" class="headerlink" title="nginx配置"></a>nginx配置</h3><p>接下来在nginx配置中添加以下配置，再重载即可访问部署后的博客页面了</p>
+<figure class="highlight plaintext"><figcaption><span>nginx.conf</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">  listen 80;</span><br><span class="line">  server_name your.domain.com;</span><br><span class="line"></span><br><span class="line">  # 强制跳转到 HTTPS</span><br><span class="line">  return 301 https://$host$request_uri;</span><br><span class="line">&#125;</span><br><span class="line">server &#123;</span><br><span class="line">  listen 443 ssl;</span><br><span class="line">  server_name your.domain.com;</span><br><span class="line"></span><br><span class="line">  # SSL 证书路径（你需要替换成自己的）</span><br><span class="line">  ssl_certificate /etc/ssl/certs/your.domain.com_bundle.crt;</span><br><span class="line">  ssl_certificate_key /etc/ssl/private/your.domain.com.key;</span><br><span class="line">  ssl_session_timeout 5m;</span><br><span class="line">  ssl_protocols TLSv1.2 TLSv1.3;</span><br><span class="line">  ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5;</span><br><span class="line">  ssl_prefer_server_ciphers on;</span><br><span class="line"></span><br><span class="line">  root /path/to/博客仓库/public;</span><br><span class="line">  index index.html;</span><br><span class="line"></span><br><span class="line">  access_log /www/wwwlogs/access_blog.log;</span><br><span class="line"></span><br><span class="line">  location / &#123;</span><br><span class="line">    try_files $uri $uri/ /index.html;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="SEO优化"><a href="#SEO优化" class="headerlink" title="SEO优化"></a>SEO优化</h3><p>SEO优化比较复杂，只是记录下自己做过的操作，还在研究学习中。</p>
+<p>以谷歌搜索为例，访问地址：<a target="_blank" rel="noopener" href="https://search.google.com/search-console">https://search.google.com/search-console</a>，输入要索引的域名，谷歌会返回一个校验码文件。创建一个静态文件目录<code>source/static</code>存放这个文件。</p>
+<p>并在hexo配置文件中添加跳过渲染内容，避免部署后访问校验文件时出现内容嵌套在博客框架中，导致校验不通过的问题。重新打包并访问<a target="_blank" rel="noopener" href="https://your.domain.com/googledxxxxxxxxxx">https://your.domain.com/googledxxxxxxxxxx</a>应该能看到输出<code>google-site-verification: googledxxxxxxxxxx.html</code>。</p>
+<figure class="highlight yml"><figcaption><span>_config.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">skip_render:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">static/**/*</span></span><br></pre></td></tr></table></figure>
+
+<p>站点验证成功后还需要添加一下sitemap，这样谷歌可以知道需要抓取的子页面有哪些。若安装了上文的sitemap插件，可在ng添加如下配置，访问<code>https://your.domain.com/sitemap</code>时即可直接重定向到<code>https://your.domain.com/sitemap.xml</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">location / &#123;</span><br><span class="line">  try_files $uri $uri/ /index.html;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location = /sitemap &#123;</span><br><span class="line">  return 301 /sitemap.xml;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后在谷歌控制台中找到并打开“站点地图”菜单栏，在“添加新的站点地图”中输入<code>sitemap</code>，点击提交即可。</p>
+<h2 id="四、开启站内评论"><a href="#四、开启站内评论" class="headerlink" title="四、开启站内评论"></a>四、开启站内评论</h2><p>这里选用<a target="_blank" rel="noopener" href="https://twikoo.js.org/">twikoo</a>作为站内评论组件 (需要next主题<code>8.x</code>版本支持)</p>
+<p>先在服务器上启动服务，访问ip:port若看到输出<code>Twikoo 云函数运行正常，请参考 https://twikoo.js.org/frontend.html 完成前端的配置</code> 则为启动成功了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">  --name twikoo \</span><br><span class="line">  -e TZ=Asia/Shanghai \</span><br><span class="line">  -e TWIKOO_THROTTLE=10 \</span><br><span class="line">  -v /home/twikoo/data:/app/data \</span><br><span class="line">  -p 8080:8080 \</span><br><span class="line">  --restart=always \</span><br><span class="line">  imaegoo/twikoo</span><br></pre></td></tr></table></figure>
+
+<p>为了避免跨域，这里用nginx把twitoo代理转发到跟博客同域名下，在nginx博客配置部分添加如下内容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">location / &#123;</span><br><span class="line">  try_files $uri $uri/ /index.html;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 👇 添加 Twikoo 的反向代理配置</span><br><span class="line">location /twikoo/ &#123;</span><br><span class="line">  proxy_pass http://127.0.0.1:8080/; # 修改为twikoo服务的端口</span><br><span class="line">  proxy_set_header Host $host;</span><br><span class="line">  proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后在博客根目录执行<code>npm i hexo-next-twikoo</code>安装twikoo组件，在next配置文件中添加如下配置，重新打包部署后访问博客页面应该就能看到站内评论组件了</p>
+<figure class="highlight yml"><figcaption><span>_config.next.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Multiple Comment System Support</span></span><br><span class="line"><span class="attr">comments:</span></span><br><span class="line">  <span class="comment"># Available values: tabs | buttons</span></span><br><span class="line">  <span class="attr">style:</span> <span class="string">tabs</span></span><br><span class="line">  <span class="comment"># Choose a comment system to be displayed by default.</span></span><br><span class="line">  <span class="comment"># Available values: disqus | disqusjs | changyan | livere | gitalk | utterances</span></span><br><span class="line">  <span class="attr">active:</span> <span class="string">disqus</span></span><br><span class="line">  <span class="comment"># Setting `true` means remembering the comment system selected by the visitor.</span></span><br><span class="line">  <span class="attr">storage:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># Lazyload all comment systems.</span></span><br><span class="line">  <span class="attr">lazyload:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># Modify texts or order for any naves, here are some examples.</span></span><br><span class="line">  <span class="attr">nav:</span></span><br><span class="line">    <span class="attr">twikoo:</span></span><br><span class="line">      <span class="attr">order:</span> <span class="number">-1</span></span><br><span class="line">      <span class="attr">text:</span> <span class="string">Twikoo</span> <span class="string">评论</span></span><br><span class="line">    <span class="attr">disqus:</span></span><br><span class="line">     <span class="attr">text:</span> <span class="string">Load</span> <span class="string">Disqus</span></span><br><span class="line">     <span class="attr">order:</span> <span class="number">-1</span></span><br><span class="line">    <span class="comment">#gitalk:</span></span><br><span class="line">    <span class="comment">#  order: -2</span></span><br><span class="line"></span><br><span class="line"><span class="attr">twikoo:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">envId:</span> <span class="string">https://your.domain.com/twikoo</span>  <span class="comment"># 或 http://ip:port，改成你自己的地址</span></span><br><span class="line">  <span class="attr">region:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">window.location.pathname</span></span><br><span class="line">  <span class="attr">visitor:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">commentCount:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/HEXO/" rel="tag"># HEXO</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/06/25/%E9%80%82%E8%80%81%E5%8C%96/" rel="prev" title="网页适老化">
+                  <i class="fa fa-angle-left"></i> 网页适老化
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments"><div id="twikoo-comments"></div></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">fbz</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">10k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">9 分钟</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script class="next-config" data-name="twikoo" type="application/json">{"enable":true,"visitor":true,"envId":"https://blog.fangbozhou.com/twikoo/","region":"","path":"window.location.pathname","commentCount":true,"el":"#twikoo-comments"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.twikoo.el)
+    .then(() => NexT.utils.getScript(
+      CONFIG.twikoo.jsUrl || 'https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js',
+      { condition: window.twikoo }
+    ))
+    .then(() => {
+      twikoo.init(CONFIG.twikoo);
+    });
+});
+</script>
+<style>
+.post-block, .comments {
+  overflow: visible;
+}
+.tk-owo-emotion {
+  display: inline-block;
+}
+</style>
+
+</body>
+</html>
