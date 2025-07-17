@@ -284,3 +284,9 @@ twikoo:
   visitor: true
   commentCount: true
 ```
+
+## 五、一些问题
+
+### 1. 图片引入问题
+
+配置文件中设置`post_asset_folder: true`，这样在创建博客时会生成博客同名的文件夹，便于管理图片，一开始尝试markdown原生的图片引入写法`![图片alt](图片链接 "图片title")`最终渲染出来的图片路径始终不对，一番研究发现用`{% asset_img 图片文件名 描述文字 %}`这个标签才能成功渲染出实际路径
