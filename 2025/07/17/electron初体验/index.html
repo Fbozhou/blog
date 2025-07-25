@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.fangbozhou.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.23.1","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":{"twikoo":{"order":-1,"text":"Twikoo 评论"},"disqus":{"text":"Load Disqus","order":-1}}},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":true}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="背景近期因为一些原因，需要频繁切换网络环境，每次切换环境都需要拔插网线或者是从控制面板中禁用网卡。不喜欢这种重复的无意义操作，便寻思可以写个脚本调用方法来切换网卡状态，于是先整了个脚本，但是每次还需要双击运行，而且无法直观地看到两个网卡当前的状态，又想到或许可以用electron构建个app，用js调用api来切换网卡状态，遂跟gpt老师进行了一番探讨，成功写了个小软件实现实时监控网卡状态+一键切">
+<meta property="og:type" content="article">
+<meta property="og:title" content="electron初体验">
+<meta property="og:url" content="https://blog.fangbozhou.com/2025/07/17/electron%E5%88%9D%E4%BD%93%E9%AA%8C/index.html">
+<meta property="og:site_name" content="BLOG">
+<meta property="og:description" content="背景近期因为一些原因，需要频繁切换网络环境，每次切换环境都需要拔插网线或者是从控制面板中禁用网卡。不喜欢这种重复的无意义操作，便寻思可以写个脚本调用方法来切换网卡状态，于是先整了个脚本，但是每次还需要双击运行，而且无法直观地看到两个网卡当前的状态，又想到或许可以用electron构建个app，用js调用api来切换网卡状态，遂跟gpt老师进行了一番探讨，成功写了个小软件实现实时监控网卡状态+一键切">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.fangbozhou.com/2025/07/17/electron%E5%88%9D%E4%BD%93%E9%AA%8C/PixPin_2025-07-17_15-38-55.png">
+<meta property="article:published_time" content="2025-07-17T06:59:35.000Z">
+<meta property="article:modified_time" content="2025-07-25T07:17:52.306Z">
+<meta property="article:author" content="fbz">
+<meta property="article:tag" content="electron">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.fangbozhou.com/2025/07/17/electron%E5%88%9D%E4%BD%93%E9%AA%8C/PixPin_2025-07-17_15-38-55.png">
+
+
+<link rel="canonical" href="https://blog.fangbozhou.com/2025/07/17/electron%E5%88%9D%E4%BD%93%E9%AA%8C/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.fangbozhou.com/2025/07/17/electron%E5%88%9D%E4%BD%93%E9%AA%8C/","path":"2025/07/17/electron初体验/","title":"electron初体验"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>electron初体验 | BLOG</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">BLOG</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E6%A0%B7%E5%BC%8F%E8%AE%BE%E8%AE%A1"><span class="nav-text">软件样式设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-text">代码实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84"><span class="nav-text">项目结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E8%BF%9B%E7%A8%8B-main-js-%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD"><span class="nav-text">主进程 main.js 核心功能</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%88%9B%E5%BB%BA%E7%AA%97%E5%8F%A3"><span class="nav-text">1. 创建窗口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E8%AF%BB%E5%8F%96%E5%8F%AF%E7%BC%96%E8%BE%91%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">2.读取可编辑的配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%89%A7%E8%A1%8C%E7%BD%91%E7%BB%9C%E5%88%87%E6%8D%A2%EF%BC%88Windows%EF%BC%89"><span class="nav-text">3. 执行网络切换（Windows）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E8%8E%B7%E5%8F%96%E7%BD%91%E5%8D%A1%E7%8A%B6%E6%80%81"><span class="nav-text">4. 获取网卡状态</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#API%E4%B8%B2%E8%81%94"><span class="nav-text">API串联</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-main-js%EF%BC%9A%E4%B8%BB%E8%BF%9B%E7%A8%8B%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD"><span class="nav-text">1. main.js：主进程注册功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-preload-js%EF%BC%9A%E6%9A%B4%E9%9C%B2-API-%E7%9A%84%E6%A1%A5%E6%A2%81"><span class="nav-text">2. preload.js：暴露 API 的桥梁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-renderer-js%EF%BC%9A%E6%B8%B2%E6%9F%93%E8%BF%9B%E7%A8%8B%E4%BD%BF%E7%94%A8-API"><span class="nav-text">3. renderer.js：渲染进程使用 API</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%93%E5%8C%85%E6%9E%84%E5%BB%BA"><span class="nav-text">打包构建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E8%AF%AD"><span class="nav-text">结语</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">fbz</p>
+  <div class="site-description" itemprop="description">记录一些点滴</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Fbozhou" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Fbozhou" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:873067641@qq.com" title="E-Mail → mailto:873067641@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.fangbozhou.com/2025/07/17/electron%E5%88%9D%E4%BD%93%E9%AA%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="fbz">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+      <meta itemprop="description" content="记录一些点滴">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="electron初体验 | BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          electron初体验
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-07-17 14:59:35" itemprop="dateCreated datePublished" datetime="2025-07-17T14:59:35+08:00">2025-07-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-07-25 15:17:52" itemprop="dateModified" datetime="2025-07-25T15:17:52+08:00">2025-07-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">技术笔记</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2025/07/17/electron%E5%88%9D%E4%BD%93%E9%AA%8C/" class="post-meta-item twikoo_visitors" data-flag-title="electron初体验" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="twikoo_visitors"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>近期因为一些原因，需要频繁切换网络环境，每次切换环境都需要拔插网线或者是从控制面板中禁用网卡。不喜欢这种重复的无意义操作，便寻思可以写个脚本调用方法来切换网卡状态，于是先整了个脚本，但是每次还需要双击运行，而且无法直观地看到两个网卡当前的状态，又想到或许可以用electron构建个app，用js调用api来切换网卡状态，遂跟gpt老师进行了一番探讨，成功写了个小软件实现实时监控网卡状态+一键切换网络环境的功能。</p>
+<h2 id="软件样式设计"><a href="#软件样式设计" class="headerlink" title="软件样式设计"></a>软件样式设计</h2><p>输入需求让gpt老师帮忙画了个设计图，最终实现效果如下：</p>
+<img src="/2025/07/17/electron%E5%88%9D%E4%BD%93%E9%AA%8C/PixPin_2025-07-17_15-38-55.png" class="" title="软件实现效果">
+
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>有了设计图就可以开工了，由于对electron并不了解，让gpt先帮忙搭了个框架。</p>
+<h3 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">network-switch-app/</span><br><span class="line">├── main.js              // 主进程：窗口创建、状态检测、指令执行</span><br><span class="line">├── preload.js           // 预加载脚本（可用于暴露安全 API）</span><br><span class="line">├── renderer/            // 渲染进程</span><br><span class="line">│   ├── index.html</span><br><span class="line">│   ├── renderer.js</span><br><span class="line">├── assets/</span><br><span class="line">│   └── icon.ico         // 应用图标</span><br><span class="line">├── config.json          // 网卡名配置文件（intranet/internet）</span><br><span class="line">├── package.json</span><br></pre></td></tr></table></figure>
+
+<p><code>main.js</code> 中开启程序窗口以及调用系统API，<code>preload.js</code> 中挂载全局方法，在<code>renderer</code>中实现页面内容以及js逻辑处理</p>
+<h3 id="主进程-main-js-核心功能"><a href="#主进程-main-js-核心功能" class="headerlink" title="主进程 main.js 核心功能"></a>主进程 main.js 核心功能</h3><h4 id="1-创建窗口"><a href="#1-创建窗口" class="headerlink" title="1. 创建窗口"></a>1. 创建窗口</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> win = <span class="keyword">new</span> <span class="title class_">BrowserWindow</span>(&#123;</span><br><span class="line">  <span class="attr">width</span>: <span class="number">280</span>,</span><br><span class="line">  <span class="attr">height</span>: <span class="number">160</span>,</span><br><span class="line">  <span class="attr">useContentSize</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">frame</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="attr">alwaysOnTop</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">resizable</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="attr">transparent</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">webPreferences</span>: &#123;</span><br><span class="line">    <span class="attr">preload</span>: path.<span class="title function_">join</span>(__dirname, <span class="string">&#x27;preload.js&#x27;</span>),</span><br><span class="line">    <span class="attr">contextIsolation</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">nodeIntegration</span>: <span class="literal">false</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">icon</span>: path.<span class="title function_">join</span>(__dirname, <span class="string">&#x27;assets&#x27;</span>, <span class="string">&#x27;icon.ico&#x27;</span>),</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-读取可编辑的配置文件"><a href="#2-读取可编辑的配置文件" class="headerlink" title="2.读取可编辑的配置文件"></a>2.读取可编辑的配置文件</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> configPath = path.<span class="title function_">join</span>(path.<span class="title function_">dirname</span>(app.<span class="title function_">getPath</span>(<span class="string">&#x27;exe&#x27;</span>)), <span class="string">&#x27;config.json&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> config = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(fs.<span class="title function_">readFileSync</span>(configPath, <span class="string">&#x27;utf-8&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-执行网络切换（Windows）"><a href="#3-执行网络切换（Windows）" class="headerlink" title="3. 执行网络切换（Windows）"></a>3. 执行网络切换（Windows）</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">exec</span>(`netsh interface <span class="built_in">set</span> interface name=<span class="string">&quot;<span class="variable">$&#123;name&#125;</span>&quot;</span> admin=ENABLED`)</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-获取网卡状态"><a href="#4-获取网卡状态" class="headerlink" title="4. 获取网卡状态"></a>4. 获取网卡状态</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">getAdapterStatus</span> = (<span class="params">name</span>) =&gt;</span><br><span class="line">  <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">exec</span>(</span><br><span class="line">      <span class="string">`powershell -Command &quot;(Get-NetAdapter -Name \\&quot;<span class="subst">$&#123;name&#125;</span>\\&quot; -ErrorAction SilentlyContinue).Status&quot;`</span>,</span><br><span class="line">      <span class="function">(<span class="params">err, stdout</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> status = stdout.<span class="title function_">trim</span>()</span><br><span class="line">        <span class="title function_">resolve</span>(status === <span class="string">&#x27;Up&#x27;</span> ? <span class="string">&#x27;Up&#x27;</span> : <span class="string">&#x27;Down&#x27;</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    )</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="API串联"><a href="#API串联" class="headerlink" title="API串联"></a>API串联</h3><h4 id="1-main-js：主进程注册功能"><a href="#1-main-js：主进程注册功能" class="headerlink" title="1. main.js：主进程注册功能"></a>1. main.js：主进程注册功能</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 网卡状态检查</span></span><br><span class="line">ipcMain.<span class="title function_">handle</span>(<span class="string">&#x27;get-status&#x27;</span>, <span class="title function_">async</span> () =&gt; &#123;&#125;)</span><br><span class="line"><span class="comment">// 切换模式</span></span><br><span class="line">ipcMain.<span class="title function_">handle</span>(<span class="string">&#x27;toggle-mode&#x27;</span>, <span class="title function_">async</span> () =&gt; &#123;&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-preload-js：暴露-API-的桥梁"><a href="#2-preload-js：暴露-API-的桥梁" class="headerlink" title="2. preload.js：暴露 API 的桥梁"></a>2. preload.js：暴露 API 的桥梁</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; contextBridge, ipcRenderer &#125; = <span class="built_in">require</span>(<span class="string">&#x27;electron&#x27;</span>)</span><br><span class="line"></span><br><span class="line">contextBridge.<span class="title function_">exposeInMainWorld</span>(<span class="string">&#x27;networkAPI&#x27;</span>, &#123;</span><br><span class="line">  <span class="attr">getStatus</span>: <span class="title function_">async</span> () =&gt; <span class="keyword">await</span> ipcRenderer.<span class="title function_">invoke</span>(<span class="string">&#x27;get-status&#x27;</span>),</span><br><span class="line">  <span class="attr">toggleMode</span>: <span class="title function_">async</span> () =&gt; <span class="keyword">await</span> ipcRenderer.<span class="title function_">invoke</span>(<span class="string">&#x27;toggle-mode&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-renderer-js：渲染进程使用-API"><a href="#3-renderer-js：渲染进程使用-API" class="headerlink" title="3. renderer.js：渲染进程使用 API"></a>3. renderer.js：渲染进程使用 API</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">updateStatus</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> status = <span class="keyword">await</span> <span class="variable language_">window</span>.<span class="property">networkAPI</span>.<span class="title function_">getStatus</span>()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="打包构建"><a href="#打包构建" class="headerlink" title="打包构建"></a>打包构建</h2><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;build&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;appId&quot;</span><span class="punctuation">:</span> <span class="string">&quot;com.fbz.networkswitch&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;productName&quot;</span><span class="punctuation">:</span> <span class="string">&quot;内外网切换器&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;files&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="string">&quot;main.js&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;preload.js&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;renderer/**/*&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;config.json&quot;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;extraFiles&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;from&quot;</span><span class="punctuation">:</span> <span class="string">&quot;config.json&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;to&quot;</span><span class="punctuation">:</span> <span class="string">&quot;config.json&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;directories&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;buildResources&quot;</span><span class="punctuation">:</span> <span class="string">&quot;assets&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;output&quot;</span><span class="punctuation">:</span> <span class="string">&quot;dist&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;win&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;target&quot;</span><span class="punctuation">:</span> <span class="string">&quot;nsis&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;icon&quot;</span><span class="punctuation">:</span> <span class="string">&quot;assets/icon.ico&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;sign&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;nsis&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;oneClick&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;perMachine&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>注意事项：</p>
+<ul>
+<li>win图标需要使用多分辨率图标，<code>16x16</code>, <code>32x32</code>, <code>48x48</code>, <code>256x256</code> 都包含在 <code>.ico</code> 文件中。（在线转换工具: <a target="_blank" rel="noopener" href="https://www.aconvert.com/cn/icon/png-to-ico/">https://www.aconvert.com/cn/icon/png-to-ico/</a>）</li>
+</ul>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>之前也有想研究electron，但是一直没什么契机，这次刚好遇到这种需求，便借着chatgpt写了个小工具，也算是对其有了初步的认知，使用electron前端开发也能快速上手开发程序了。<br>待下一次有新想法的时候，再深入研究研究</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/electron/" rel="tag"># electron</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/07/07/hexo%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="prev" title="hexo的使用">
+                  <i class="fa fa-angle-left"></i> hexo的使用
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments"><div id="twikoo-comments"></div></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">fbz</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">13k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">12 分钟</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script class="next-config" data-name="twikoo" type="application/json">{"enable":true,"visitor":true,"envId":"https://blog.fangbozhou.com/twikoo/","region":"","path":"window.location.pathname","commentCount":true,"el":"#twikoo-comments"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.twikoo.el)
+    .then(() => NexT.utils.getScript(
+      CONFIG.twikoo.jsUrl || 'https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js',
+      { condition: window.twikoo }
+    ))
+    .then(() => {
+      twikoo.init(CONFIG.twikoo);
+    });
+});
+</script>
+<style>
+.post-block, .comments {
+  overflow: visible;
+}
+.tk-owo-emotion {
+  display: inline-block;
+}
+</style>
+
+</body>
+</html>
