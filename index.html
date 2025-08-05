@@ -167,7 +167,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -178,7 +178,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -203,6 +203,149 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.fangbozhou.com/2025/07/29/nextcloud/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="fbz">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BLOG">
+      <meta itemprop="description" content="记录一些点滴">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/07/29/nextcloud/" class="post-title-link" itemprop="url">使用Nextcloud搭建多人协作文档系统</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-07-29 10:02:50" itemprop="dateCreated datePublished" datetime="2025-07-29T10:02:50+08:00">2025-07-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-08-05 11:50:13" itemprop="dateModified" datetime="2025-08-05T11:50:13+08:00">2025-08-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">技术笔记</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2025/07/29/nextcloud/" class="post-meta-item twikoo_visitors" data-flag-title="使用Nextcloud搭建多人协作文档系统" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="twikoo_visitors"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>开发中的内网项目，近期要进入用户测试阶段了，为了方便用户提交bug，领导让我用 Nextcloud + OnlyOffice Document Server + OnlyOffice插件 搭建一个内网多人协作文档系统 <del><em>(其实私有化部署个禅道之类的系统肯定比多人excel文档更好)</em></del>。</p>
+<p>经过一番研究，梳理出了三者间关系。Nextcloud即个人网盘，OnlyOffice插件实现在网页中编辑网盘中的文件，OnlyOffice Document Server实现多人协作编辑文件。</p>
+<blockquote>
+<p>全文假设安装机子的ip为<code>10.96.38.201</code>，需要根据实际情况修改</p>
+</blockquote>
+<h2 id="安装与使用"><a href="#安装与使用" class="headerlink" title="安装与使用"></a>安装与使用</h2><h3 id="前置环境需求"><a href="#前置环境需求" class="headerlink" title="前置环境需求"></a>前置环境需求</h3><p>能装最新的docker以及docker compose就装最新的，至少也要如下版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker -v</span><br><span class="line">Docker version 24.0.7, build afdd53b</span><br><span class="line">docker-compose -v</span><br><span class="line">docker-compose version 1.29.1, build c34c88b2</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装Nextcloud以及OnlyOffice-Document-Server"><a href="#安装Nextcloud以及OnlyOffice-Document-Server" class="headerlink" title="安装Nextcloud以及OnlyOffice Document Server"></a>安装Nextcloud以及OnlyOffice Document Server</h3><p>推荐使用docker-compose统一安装，使用镜像<code>nextcloud:stable</code>、<code>186184848/documentserver</code>，以及数据库<code>mariadb:10.11.13</code>，数据库推荐挂载卷到宿主机以实现数据持久化保存。</p>
+<blockquote>
+<p><code>186184848/documentserver</code>镜像为社区版源码编译 移除人数限制 移动端编辑 多核心 中文字体，推荐使用</p>
+</blockquote>
+<p>创建<code>docker-compose.yml</code>文件，cd到文件所在目录执行<code>docker-compose up -d</code>，查看容器运行状态。若启动成功，访问<a target="_blank" rel="noopener" href="http://10.96.38.201:9997/">http://10.96.38.201:9997</a>应该要看到ONLYOFFICE文档页面，访问<a target="_blank" rel="noopener" href="http://10.96.38.201:9995/">http://10.96.38.201:9995</a>应该要看到nextcloud管理员配置页面。</p>
+<figure class="highlight yml"><figcaption><span>docker-compose.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;3&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">db:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">mariadb:10.11.13</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">nextcloud-db</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">cap_add:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">SYS_TIME</span></span><br><span class="line">    <span class="attr">security_opt:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">seccomp=unconfined</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">MYSQL_ROOT_PASSWORD=YOURPWD</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">MYSQL_DATABASE=nextcloud</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">MYSQL_USER=nextcloud</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">MYSQL_PASSWORD=YOURPWD</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">/home/nextcloud/db:/var/lib/mysql</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">office-net</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">nextcloud:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">nextcloud:stable</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">nextcloud</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">depends_on:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">db</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;9995:80&quot;</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">MYSQL_DATABASE=nextcloud</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">MYSQL_USER=nextcloud</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">MYSQL_PASSWORD=YOURPWD</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">MYSQL_HOST=db</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">nextcloud-data:/var/www/html</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">office-net</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">onlyoffice:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="number">186184848</span><span class="string">/documentserver</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">onlyoffice</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;9997:80&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;9998:8000&quot;</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">JWT_ENABLED=false</span></span><br><span class="line">    <span class="attr">networks:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">office-net</span></span><br><span class="line">    <span class="attr">security_opt:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">seccomp=unconfined</span></span><br><span class="line"></span><br><span class="line"><span class="attr">volumes:</span></span><br><span class="line">  <span class="attr">nextcloud-data:</span></span><br><span class="line">  <span class="attr">db-data:</span></span><br><span class="line"></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line">  <span class="attr">office-net:</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="安装配置Nextcloud-OnlyOffice插件"><a href="#安装配置Nextcloud-OnlyOffice插件" class="headerlink" title="安装配置Nextcloud OnlyOffice插件"></a>安装配置Nextcloud OnlyOffice插件</h3><p>访问 <a target="_blank" rel="noopener" href="https://apps.nextcloud.com/apps/onlyoffice">https://apps.nextcloud.com/apps/onlyoffice</a> 根据安装的nextcloud版本下载对应的插件版本并解压。</p>
+<p>在宿主机中执行<code>docker cp ./onlyoffice nextcloud:/var/www/html/apps</code>把解压好的插件拷贝到nextcloud插件文件夹中</p>
+<p>再执行<code>docker exec -u www-data nextcloud php occ app:enable onlyoffice</code>启用插件</p>
+<p>浏览器打开 <a target="_blank" rel="noopener" href="http://10.96.38.201:9995/settings/admin/overview">Nextcloud</a> → 管理 → ONLYOFFICE</p>
+<p>按如下配置填写：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 使用服务名：</span><br><span class="line">ONLYOFFICE Docs地址：http://onlyoffice/</span><br><span class="line">服务器内部请求 ONLYOFFICE Docs 的地址：http://onlyoffice/</span><br><span class="line">ONLYOFFICE Docs 内部请求服务器的地址：http://nextcloud/</span><br><span class="line"></span><br><span class="line"># 若使用服务名的方式存在问题，也可以直接指定IP端口：</span><br><span class="line">ONLYOFFICE Docs地址：http://10.96.38.201:9997/</span><br><span class="line">服务器内部请求 ONLYOFFICE Docs 的地址：http://10.96.38.201:9997/</span><br><span class="line">ONLYOFFICE Docs 内部请求服务器的地址：http://10.96.38.201:9995/</span><br></pre></td></tr></table></figure>
+
+<p>点击保存后看到如下内容即为配置成功，可以传一个文件验证试试，正常应该就可以在线编辑文档了</p>
+<img src="/2025/07/29/nextcloud/PixPin_2025-08-05_11-10-26.png" class="" title="配置成功">
+
+<h2 id="一些坑"><a href="#一些坑" class="headerlink" title="一些坑"></a>一些坑</h2><h3 id="1-域解析问题"><a href="#1-域解析问题" class="headerlink" title="1. 域解析问题"></a>1. 域解析问题</h3><p>若访问nextcloud有问题，需要查看nextcloud容器内的<code>/var/www/html/config/config.php</code>文件中的<code>trusted_domains</code>配置部分，域名端口要添加上部署机器的ip，比如：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;trusted_domains&#x27;</span> =&gt; </span><br><span class="line"><span class="keyword">array</span> (</span><br><span class="line">  <span class="number">0</span> =&gt; <span class="string">&#x27;10.96.38.201:9995&#x27;</span>,</span><br><span class="line">),</span><br></pre></td></tr></table></figure>
+
+<p>推荐直接在容器内执行<code>yum install vim</code>安装vim，方便编辑配置文件</p>
+<p>若内网机子不方便安装vim，只能拷贝到宿主机编辑后再拷贝回去，需要执行下面几个操作，保证拷贝回容器后的config.php文件属于www-data用户</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">cp</span> nextcloud:/var/www/html/config/config.php ./config.php</span><br><span class="line"><span class="comment"># 编辑 config.php...</span></span><br><span class="line">docker <span class="built_in">cp</span> ./config.php nextcloud:/var/www/html/config/config.php</span><br><span class="line">docker <span class="built_in">exec</span> -u root nextcloud <span class="built_in">chown</span> www-data:www-data /var/www/html/config/config.php</span><br><span class="line">docker <span class="built_in">exec</span> -u root nextcloud <span class="built_in">chmod</span> 640 /var/www/html/config/config.php</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-请求过多问题"><a href="#2-请求过多问题" class="headerlink" title="2.请求过多问题"></a>2.请求过多问题</h3><p>运行一段时间后，通过分享链接匿名访问可能会遇到“请求过多 您的网络请求过多。如果出现错误，请稍后重试或与您的管理员联系。”的提示。<br>这个是nextcloud本身的限流机制，可以在config.php中添加配置关闭限流保护机制：</p>
+<figure class="highlight php"><figcaption><span>config.php</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;auth.bruteforce.protection.enabled&#x27;</span> =&gt; <span class="literal">false</span>,</span><br></pre></td></tr></table></figure>
+
+<p>并且执行<code>docker exec -u www-data nextcloud php occ security:reset-bruteforce-attempts</code>清除缓存</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -248,7 +391,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-07-25 15:17:52" itemprop="dateModified" datetime="2025-07-25T15:17:52+08:00">2025-07-25</time>
+      <time title="修改时间：2025-08-05 11:50:13" itemprop="dateModified" datetime="2025-08-05T11:50:13+08:00">2025-08-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -384,7 +527,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-07-25 15:17:52" itemprop="dateModified" datetime="2025-07-25T15:17:52+08:00">2025-07-25</time>
+      <time title="修改时间：2025-08-05 11:50:13" itemprop="dateModified" datetime="2025-08-05T11:50:13+08:00">2025-08-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -556,7 +699,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-07-25 15:17:52" itemprop="dateModified" datetime="2025-07-25T15:17:52+08:00">2025-07-25</time>
+      <time title="修改时间：2025-08-05 11:50:13" itemprop="dateModified" datetime="2025-08-05T11:50:13+08:00">2025-08-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -678,7 +821,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-07-25 15:17:52" itemprop="dateModified" datetime="2025-07-25T15:17:52+08:00">2025-07-25</time>
+      <time title="修改时间：2025-08-05 11:50:13" itemprop="dateModified" datetime="2025-08-05T11:50:13+08:00">2025-08-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -843,7 +986,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-07-25 15:17:52" itemprop="dateModified" datetime="2025-07-25T15:17:52+08:00">2025-07-25</time>
+      <time title="修改时间：2025-08-05 11:50:13" itemprop="dateModified" datetime="2025-08-05T11:50:13+08:00">2025-08-05</time>
     </span>
 
   
@@ -930,13 +1073,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">13k</span>
+    <span title="站点总字数">16k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">12 分钟</span>
+    <span title="站点阅读时长">15 分钟</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
